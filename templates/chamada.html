@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamada - {{ turma }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="titulo">Chamada – {{ turma }}</div>
+  <main>
+    <div class="Tx_Data">Data da Lista</div>
+    <input type="date" class="Data" id="dataPicker" value="{{ hoje }}">
+    
+    <table id="tabela">
+      <thead>
+        <tr><th>N°</th><th>Nome</th><th>RA</th><th>Hora</th><th>Presença</th></tr>
+      </thead>
+      <tbody>
+        {% for p in dados %}
+        <tr data-ra="{{ p.ra }}">
+          <td>{{ p.id }}</td>
+          <td>{{ p.nome }}</td>
+          <td>{{ p.ra }}</td>
+          <td class="hora">{{ p.hora or '' }}</td>
+          <td class="presenca">{{ p.presenca or 'Faltou' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    <!-- campo onde o scanner “digita” o código e dá ENTER -->
+    <input type="text" id="barcodeInput" autofocus style="opacity:0; position:absolute; left:-9999px;">
+    
+   
+    <div class="watermark-container">
+      <img src="{{ url_for('static', filename='Imagens/Logo.png') }}" class="watermark">
+    </div>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

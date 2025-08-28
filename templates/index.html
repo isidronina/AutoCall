@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Início</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header><img src="{{ url_for('static', filename='Imagens/Titulo.png') }}" class="Nome"></header>
+  <section class="grid">
+    {% for turma in turmas %}
+      <a href="{{ url_for('chamada', turma=turma) }}">
+        <button class="Turma-botão">{{ turma }}</button>
+      </a>
+    {% endfor %}
+  </section>
+  <!-- scanner invisível -->
+<input type="text" id="barcodeInput" autofocus style="opacity:0; position:absolute; left:-9999px;">
+<!-- feedback do último bip -->
+<div id="scanStatus" aria-live="polite" style="margin-top:8px;"></div>
+
+
+  <div class="watermark-container">
+    <img src="{{ url_for('static', filename='Imagens/Logo.png') }}" class="watermark">
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
